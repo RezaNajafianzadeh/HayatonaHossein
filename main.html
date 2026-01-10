@@ -4,8 +4,436 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مجموعه حیاتنا حسین (ع)</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #EFEBE9;
+            margin-top: 130px; 
+        }
+        
+        /* هدر */
+        header {
+            margin: auto;
+            top: 10px;
+            left: 0;
+            right: 0;
+            border: 2px solid #63da14; 
+            border-radius: 20px;
+            position: fixed;
+            height: 100px;
+            width: 95%;
+            background: white;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            box-shadow: 0 4px 15px rgba(141, 110, 99, 0.1);
+        }
+        
+        /* لیست منو */
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-list li {
+            position: relative;
+        }
+        
+        .nav-list a {
+            text-decoration: none;
+            color: #5D4037;
+            font-size: 17px;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .nav-list a:hover {
+            background-color: #EFEBE9;
+            color: #8D6E63;
+            transform: translateY(-2px);
+        }
+        
+        /* آیکن همبرگری */
+        .hamburger-5 {
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            background: #EFEBE9;
+            border-radius: 10px;
+            padding: 13px 10px;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 2px solid #8D6E63;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-5 span {
+            display: block;
+            height: 3px;
+            background: #5D4037;
+            border-radius: 3px;
+            transition: 0.3s;
+            width: 100%;
+        }
+        
+        .hamburger-5 span:nth-child(2) {
+            margin: 4px 0;
+        }
+        
+        .hamburger-5.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+            background: #dc3545;
+        }
+        
+        .hamburger-5.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        
+        .hamburger-5.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+            background: #dc3545;
+        }
+        
+        .hamburger-5:hover {
+            background: #8D6E63;
+            transform: scale(1.05);
+        }
+        
+        .hamburger-5:hover span {
+            background: white;
+        }
+        
+        /* لوگو */
+        .logo-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .logo {
+            width: 350px;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+        
+        /* محتوا */
+        .content {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 20px;
+        }
+        
+        h1 {
+            color: #5D4037;
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        h1 span {
+            color: #8D6E63;
+            font-weight: 800;
+        }
+        
+        /* منوی موبایل */
+        .mobile-menu {
+            position: fixed;
+            top: 120px;
+            right: -100%;
+            width: 80%;
+            height: calc(100vh - 120px);
+            background: white;
+            padding: 30px;
+            transition: 0.5s ease-in-out;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+            border-radius: 0 0 0 20px;
+            z-index: 999;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            right: 2.5%;
+        }
+        
+        .mobile-menu-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .mobile-menu-list a {
+            text-decoration: none;
+            color: #5D4037;
+            font-size: 18px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: block;
+            border-right: 3px solid #EFEBE9;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .mobile-menu-list a:hover {
+            background: #EFEBE9;
+            padding-right: 30px;
+            color: #8D6E63;
+            border-right-color: #8D6E63;
+        }
+        
+        /* رسپانسیو */
+        /* @media (max-width: 1200px) {
+            .nav-list {
+                gap: 15px;
+            }
+            
+            .nav-list a {
+                font-size: 16px;
+                padding: 6px 12px;
+            }
+            
+            .logo {
+                width: 300px;
+            }
+        }
+         */
+        @media (max-width: 750px) {
+            header {
+                padding: 0 30px;
+            }
+            
+            .nav-list {
+                display: none !important;
+            }
+
+            
+            .logo {
+                width: 250px;
+            }
+            
+            .hamburger-5 {
+                display: flex;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 0 20px;
+                height: 90px;
+            }
+            
+            body {
+                margin-top: 110px;
+            }
+            
+            .mobile-menu {
+                top: 110px;
+                height: calc(100vh - 110px);
+            }
+            
+            .logo {
+                width: 220px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            header {
+                padding: 0 15px;
+                height: 80px;
+            }
+            
+            body {
+                margin-top: 100px;
+            }
+            
+            .mobile-menu {
+                top: 100px;
+                height: calc(100vh - 100px);
+                width: 85%;
+            }
+            
+            .logo {
+                width: 180px;
+            }
+            
+            .hamburger-5 {
+                width: 44px;
+                height: 44px;
+                padding: 11px 9px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .mobile-menu-list a {
+                font-size: 16px;
+                padding: 12px 15px;
+            }
+        }
+        
+        /* پشتیبانی از لود شدن */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .content {
+            animation: fadeIn 0.8s ease-out;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <ul class="nav-list">
+            <li><a href="#">خانه</a></li>
+            <li><a href="#">گزارشات</a></li>
+            <li><a href="#">نکات کلیدی</a></li>
+            <li><a href="#">قاب های ماندگار</a></li>
+            <li><a href="#">مراسمات</a></li>
+        </ul>
+
+        
+        <div class="hamburger-5" id="hamburger5">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
     
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-list">
+            <li><a href="#">خانه</a></li>
+            <li><a href="#">گزارشات</a></li>
+            <li><a href="#">نکات کلیدی</a></li>
+            <li><a href="#">قاب های ماندگار</a></li>
+            <li><a href="#">مراسمات</a></li>
+            <li><a href="#">فعالیت‌های تربیتی</a></li>
+            <li><a href="#">پخش زنده</a></li>
+            <li><a href="#">تماس با ما</a></li>
+        </ul>
+    </div>
+    
+    <div class="content">
+        <h1>مجموعه تربیتی حیاتنا حسین <span>علیه السلام</span></h1>
+        <img src="images/Hayatona-logo.png" alt="Logo" class="logo">
+    </div>
+    
+    <script>
+        // مدیریت منوی همبرگری
+        const hamburger = document.getElementById('hamburger5');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const header = document.querySelector('header');
+        
+        // تابع toggle منو
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            // تغییر استایل هدر
+            if (mobileMenu.classList.contains('active')) {
+                header.style.borderRadius = '20px 20px 0 0';
+                header.style.boxShadow = '0 4px 20px rgba(141, 110, 99, 0.2)';
+                document.body.style.overflow = 'hidden'; // جلوگیری از اسکرول صفحه
+            } else {
+                header.style.borderRadius = '20px';
+                header.style.boxShadow = '0 4px 15px rgba(141, 110, 99, 0.1)';
+                document.body.style.overflow = ''; // بازگشت اسکرول
+            }
+        }
+        
+        // کلیک روی همبرگر
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMenu();
+            
+            // افکت کلیک
+            this.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 200);
+        });
+        
+        // بستن منو با کلیک روی لینک‌ها
+        document.querySelectorAll('.mobile-menu-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+        
+        // بستن منو با کلیک خارج از آن
+        document.addEventListener('click', function(event) {
+            if (mobileMenu.classList.contains('active') &&
+                !mobileMenu.contains(event.target) &&
+                !hamburger.contains(event.target)) {
+                toggleMenu();
+            }
+        });
+        
+        // بستن منو با کلید ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+        
+        // تغییر استایل هدر هنگام اسکرول
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.style.top = '0';
+                header.style.borderRadius = window.innerWidth > 992 ? '0 0 20px 20px' : '0';
+                document.body.style.marginTop = '100px';
+                
+                // آپدیت موقعیت منوی موبایل
+                mobileMenu.style.top = '100px';
+                mobileMenu.style.height = 'calc(100vh - 100px)';
+            } else {
+                header.style.top = '10px';
+                header.style.borderRadius = '20px';
+                document.body.style.marginTop = '130px';
+                
+                // آپدیت موقعیت منوی موبایل
+                mobileMenu.style.top = '120px';
+                mobileMenu.style.height = 'calc(100vh - 120px)';
+            }
+        });
+        
+        // رسپانسیو کردن منو بر اساس اندازه صفحه
+        function handleResize() {
+            if (window.innerWidth > 992) {
+                mobileMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+                header.style.borderRadius = '20px';
+            }
+        }
+        
+        window.addEventListener('resize', handleResize);
+        handleResize();
+    </script>
 </body>
 </html>
