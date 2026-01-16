@@ -153,17 +153,6 @@
             color: #48b80c;
             font-weight: 800;
         }
-        
-        .box {
-            margin-top: 70px;
-            background-color: white;
-            border: 2px solid #0b9b3b ;
-            border-radius: 2px;
-        }
-        
-        .box img{
-            width: 300px;
-        }
 
         /* منوی موبایل */
         .mobile-menu {
@@ -318,6 +307,51 @@
             animation: fadeIn 0.8s ease-out;
         }
 
+        .box {
+            margin-top: 70px;
+            background-color: white;
+            border: 2px solid #0b9b3b ;
+            border-radius: 2px;
+            height: 400px;
+            position: relative;
+        }
+        
+        .box span{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: x-large;
+            color: #48b80c;
+        }
+
+        .box img{
+            width: 300px;
+        }
+
+        .Report{
+            position: absolute;
+            border-radius: 5px;
+        }
+
+        #Report-viow{
+            position: relative;
+            z-index: 100;
+            margin: auto;
+            top: 100px;
+        }
+        #Report-2{
+            left: 40px;
+            top: 160px;
+            filter: blur(1px);
+        }
+
+        #Report-3{
+            right: 40px;
+            filter: blur(1px);
+            top: 160px;
+        }
+
+        
     </style>
 </head>
 <body>
@@ -357,9 +391,10 @@
 
         <div class="box" id="Reports">
 
-            <img src="image.png" alt="Report" id="Report-viow">
-            <img src="image.png" alt="Report" id="Report-2">
-            <img src="image.png" alt="Report" id="Report-3">
+            <span>گزارشات:</span>
+            <img src="image.png" alt="Report" id="Report-viow" class="Report">
+            <img src="image-2.jpg" alt="Report" id="Report-2" class="Report">
+            <img src="image-3.jpg" alt="Report" id="Report-3" class="Report">
 
         </div>
     </div>
