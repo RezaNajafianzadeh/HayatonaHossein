@@ -306,51 +306,425 @@
         .content {
             animation: fadeIn 0.8s ease-out;
         }
-
-        .box {
+ .box {
             margin-top: 70px;
-            background-color: white;
-            border: 2px solid #0b9b3b ;
-            border-radius: 2px;
-            height: 400px;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border: 3px solid #0b9b3b;
+            border-radius: 20px;
+            height: 500px;
             position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(11, 155, 59, 0.15);
+            padding: 30px;
         }
         
-        .box span{
+        .box span {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: x-large;
-            color: #48b80c;
+            top: 25px;
+            right: 30px;
+            font-size: 28px;
+            color: #0b9b3b;
+            font-weight: 700;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-
-        .box img{
-            width: 300px;
-        }
-
-        .Report{
+        
+        /* Container for image slider */
+        .slider-container {
             position: absolute;
-            border-radius: 5px;
-        }
-
-        #Report-viow{
-            position: relative;
-            z-index: 100;
-            margin: auto;
             top: 100px;
+            right: 0;
+            left: 0;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
         }
-        #Report-2{
-            left: 40px;
-            top: 160px;
-            filter: blur(1px);
+        
+        .slider-track {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
+        
+        .slide {
+            position: absolute;
+            width: 320px;
+            height: 220px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            z-index: 1;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .slide:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Slide positions */
+        .slide.left {
+            transform: translateX(-150px) scale(0.8) rotateY(-15deg);
+            filter: brightness(0.7) blur(2px);
+            z-index: 1;
+        }
+        
+        .slide.center {
+            transform: translateX(0) scale(1) rotateY(0);
+            z-index: 3;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            border: 3px solid #48b80c;
+        }
+        
+        .slide.right {
+            transform: translateX(150px) scale(0.8) rotateY(15deg);
+            filter: brightness(0.7) blur(2px);
+            z-index: 1;
+        }
+        
+        .slide.hidden {
+            opacity: 0;
+            transform: translateX(300px) scale(0.6);
+            z-index: 0;
+        }
+        
+        .slide.hidden-left {
+            opacity: 0;
+            transform: translateX(-300px) scale(0.6);
+            z-index: 0;
+        }
+        
+        /* Navigation arrows */
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 10;
+        }
+        
+        .nav-arrow {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 3px solid #0b9b3b;
+            box-shadow: 0 8px 25px rgba(11, 155, 59, 0.3);
+            transition: all 0.3s ease;
+            font-size: 24px;
+            color: #0b9b3b;
+            font-weight: bold;
+        }
+        
+        .nav-arrow:hover {
+            background: #0b9b3b;
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(11, 155, 59, 0.5);
+        }
+        
+        .nav-arrow:active {
+            transform: scale(0.95);
+        }
+        
+        /* Dots indicator */
+        .slider-dots {
+            position: absolute;
+            bottom: 25px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 10;
+        }
+        
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(11, 155, 59, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .dot.active {
+            background: #0b9b3b;
+            transform: scale(1.3);
+            box-shadow: 0 0 15px rgba(11, 155, 59, 0.5);
+        }
+        
+        .dot:hover {
+            background: #48b80c;
+            transform: scale(1.2);
+        }
+        
+        /* Overlay for images */
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+            text-align: center;
+        }
+        
+        .slide:hover .slide-overlay {
+            transform: translateY(0);
+        }
+        
+        .slide-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .slide-date {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* Auto-play indicator */
+        .auto-play {
+            position: absolute;
+            bottom: 25px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0b9b3b;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .auto-play:hover {
+            background: #0b9b3b;
+            color: white;
+        }
+        
+        .play-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid currentColor;
+            border-radius: 50%;
+        }
+        
+        /* Animation for slide change */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+        
+        /* Responsive for slider */
+        @media (max-width: 992px) {
+            .box {
+                height: 450px;
+            }
+            
+            .slider-container {
+                height: 300px;
+            }
+            
+            .slide {
+                width: 280px;
+                height: 190px;
+            }
+            
+            .slide.left {
+                transform: translateX(-120px) scale(0.8);
+            }
+            
+            .slide.right {
+                transform: translateX(120px) scale(0.8);
+            }
+            
+            .nav-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .box {
+                height: 400px;
+                padding: 20px;
+            }
+            
+            .slider-container {
+                height: 250px;
+            }
+            
+            .slide {
+                width: 220px;
+                height: 150px;
+            }
+            
+            .slide.left {
+                transform: translateX(-100px) scale(0.8);
+            }
+            
+            .slide.right {
+                transform: translateX(100px) scale(0.8);
+            }
+            
+            .box span {
+                font-size: 22px;
+                padding: 8px 20px;
+            }
+            
+            .nav-arrow {
+                width: 45px;
+                height: 45px;
+                padding: 0 20px;
+                font-size: 18px;
+            }
+            
+            .slider-nav {
+                padding: 0 20px;
+            }
+        }
+        
+        .box-title {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    font-size: 28px;
+    color: #0b9b3b;
+    font-weight: 700;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    border: 2px solid #0b9b3b;
+    text-align: center;
+    line-height: 1.6;
+}
 
-        #Report-3{
-            right: 40px;
-            filter: blur(1px);
-            top: 160px;
-        }
+.box-title .highlight {
+    display: inline-block;
+    background: linear-gradient(120deg, #0b9b3b 0%, #48b80c 100%);
+    color: white;
+    padding: 4px 20px;
+    border-radius: 10px;
+    margin-right: 8px;
+    font-weight: 800;
+    box-shadow: 0 4px 12px rgba(11, 155, 59, 0.3);
+    transform: translateY(-2px);
+    border: 2px solid white;
+    position: relative;
+    overflow: hidden;
+}
 
+.box-title .highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    20% { left: 100%; }
+    100% { left: 100%; }
+}
+
+/* استایل ریسپانسیو */
+@media (max-width: 768px) {
+    .box-title {
+        font-size: 22px;
+        padding: 12px 20px;
+        top: 20px;
+        right: 20px;
+        border-radius: 12px;
+    }
+    
+    .box-title .highlight {
+        padding: 3px 15px;
+        font-size: 20px;
+        margin-right: 5px;
+    }
+}
+
+@media (max-width: 576px) {
+    .box-title {
+        font-size: 18px;
+        padding: 10px 15px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .box-title .highlight {
+        padding: 2px 12px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 400px) {
+    .box-title {
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+    }
+    
+    .box-title .highlight {
+        margin-right: 0;
+        width: 100%;
+        text-align: center;
+    }
+}
+    </style>
+</head>
+<body>
         
     </style>
 </head>
@@ -384,23 +758,278 @@
             <li><a href="#">تماس با ما</a></li>
         </ul>
     </div>
-    
     <div class="content">
         <h1>مجموعه تربیتی حیاتنا حسین <span>علیه السلام</span></h1>
         <img src="images/Hayatona-logo.png" alt="Logo" class="logo">
-
-        <div class="box" id="Reports">
-
-            <span>گزارشات:</span>
-            <img src="image.png" alt="Report" id="Report-viow" class="Report">
-            <img src="image-2.jpg" alt="Report" id="Report-2" class="Report">
-            <img src="image-3.jpg" alt="Report" id="Report-3" class="Report">
-
+<div class="box" id="Reports">
+    <span class="box-title">گزارش <span class="highlight">اعتکاف ۱۴۰۴</span></span>
+    <div class="slider-container">
+                <div class="slider-track" id="sliderTrack">
+                    <!-- Slides will be dynamically added here -->
+                </div>
+                
+                <div class="slider-nav">
+                    <div class="nav-arrow prev-arrow">→</div>
+                    <div class="nav-arrow next-arrow">←</div>
+                </div>
+                
+                <div class="slider-dots" id="sliderDots">
+                    <!-- Dots will be dynamically added here -->
+                </div>
+                
+            </div>
         </div>
     </div>
     
-    <hr>
     <script>
+        // Image data
+        const slidesData = [
+            {
+                id: 1,
+                image: "image.png",
+                title: "مراسم عزاداری محرم",
+                date: "۱۴۰۲/۰۷/۰۵"
+            },
+            {
+                id: 2,
+                image: "image-2.jpg",
+                title: "کارگاه آموزشی دانش‌آموزی",
+                date: "۱۴۰۲/۰۷/۱۲"
+            },
+            {
+                id: 3,
+                image: "image-3.jpg",
+                title: "جلسه پرسش و پاسخ",
+                date: "۱۴۰۲/۰۷/۱۹"
+            },
+            {
+                id: 4,
+                image: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                title: "سخنرانی هفتگی",
+                date: "۱۴۰۲/۰۷/۲۶"
+            },
+            {
+                id: 5,
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                title: "نشست دانش‌آموزی",
+                date: "۱۴۰۲/۰۸/۰۲"
+            }
+        ];
+
+        // Slider variables
+        let currentSlide = 0;
+        let slides = [];
+        let dots = [];
+        let isAutoPlaying = true;
+        let autoPlayInterval;
+
+        // Initialize slider
+        function initSlider() {
+            const sliderTrack = document.getElementById('sliderTrack');
+            const sliderDots = document.getElementById('sliderDots');
+            
+            // Create slides
+            slidesData.forEach((slideData, index) => {
+                // Create slide element
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                slide.dataset.index = index;
+                
+                const img = document.createElement('img');
+                img.src = slideData.image;
+                img.alt = slideData.title;
+                
+                const overlay = document.createElement('div');
+                overlay.className = 'slide-overlay';
+                overlay.innerHTML = `
+                    <div class="slide-title">${slideData.title}</div>
+                    <div class="slide-date">${slideData.date}</div>
+                `;
+                
+                slide.appendChild(img);
+                slide.appendChild(overlay);
+                sliderTrack.appendChild(slide);
+                slides.push(slide);
+                
+                // Create dot
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                dot.dataset.index = index;
+                sliderDots.appendChild(dot);
+                dots.push(dot);
+                
+                // Add click event to slide
+                slide.addEventListener('click', () => {
+                    goToSlide(index);
+                });
+                
+                // Add click event to dot
+                dot.addEventListener('click', () => {
+                    goToSlide(index);
+                });
+            });
+            
+            // Update slider
+            updateSlider();
+            
+            // Start auto-play
+            startAutoPlay();
+        }
+
+        // Update slider display
+        function updateSlider() {
+            slides.forEach((slide, index) => {
+                // Reset all classes
+                slide.className = 'slide';
+                
+                // Set position based on index
+                if (index === currentSlide) {
+                    slide.classList.add('center');
+                } else if (index === (currentSlide + 1) % slides.length) {
+                    slide.classList.add('right');
+                } else if (index === (currentSlide - 1 + slides.length) % slides.length) {
+                    slide.classList.add('left');
+                } else {
+                    // Hide other slides
+                    if (index < currentSlide) {
+                        slide.classList.add('hidden-left');
+                    } else {
+                        slide.classList.add('hidden');
+                    }
+                }
+            });
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Go to specific slide
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+            resetAutoPlay();
+        }
+
+        // Next slide
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        }
+
+        // Previous slide
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+
+        // Auto-play functions
+        function startAutoPlay() {
+            if (isAutoPlaying) {
+                autoPlayInterval = setInterval(nextSlide, 4000);
+                document.getElementById('playIcon').textContent = '⏸';
+                document.getElementById('autoPlayText').textContent = 'توقف پخش';
+            }
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+            document.getElementById('playIcon').textContent = '▶';
+            document.getElementById('autoPlayText').textContent = 'پخش خودکار';
+        }
+
+        function resetAutoPlay() {
+            if (isAutoPlaying) {
+                clearInterval(autoPlayInterval);
+                startAutoPlay();
+            }
+        }
+
+        function toggleAutoPlay() {
+            isAutoPlaying = !isAutoPlaying;
+            if (isAutoPlaying) {
+                startAutoPlay();
+            } else {
+                stopAutoPlay();
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initSlider();
+            
+            // Navigation events
+            document.querySelector('.prev-arrow').addEventListener('click', () => {
+                prevSlide();
+                resetAutoPlay();
+            });
+            
+            document.querySelector('.next-arrow').addEventListener('click', () => {
+                nextSlide();
+                resetAutoPlay();
+            });
+            
+            // Auto-play toggle
+            document.getElementById('autoPlayToggle').addEventListener('click', toggleAutoPlay);
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    prevSlide();
+                    resetAutoPlay();
+                } else if (e.key === 'ArrowLeft') {
+                    nextSlide();
+                    resetAutoPlay();
+                } else if (e.key === ' ') {
+                    toggleAutoPlay();
+                }
+            });
+            
+            // Pause on hover
+            const sliderContainer = document.querySelector('.slider-container');
+            sliderContainer.addEventListener('mouseenter', () => {
+                if (isAutoPlaying) {
+                    clearInterval(autoPlayInterval);
+                }
+            });
+            
+            sliderContainer.addEventListener('mouseleave', () => {
+                if (isAutoPlaying) {
+                    startAutoPlay();
+                }
+            });
+            
+            // Touch/swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            sliderContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            sliderContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Swipe right to left = next
+                        nextSlide();
+                    } else {
+                        // Swipe left to right = previous
+                        prevSlide();
+                    }
+                    resetAutoPlay();
+                }
+            }
+        });
+
         // مدیریت منوی همبرگری
         const hamburger = document.getElementById('hamburger5');
         const mobileMenu = document.getElementById('mobileMenu');
