@@ -203,40 +203,6 @@
         }
         
         /* رسپانسیو */
-        /* @media (max-width: 1200px) {
-            .nav-list {
-                gap: 15px;
-            }
-            
-            .nav-list a {
-                font-size: 16px;
-                padding: 6px 12px;
-            }
-            
-            .logo {
-                width: 300px;
-            }
-        }
-         */
-        @media (max-width: 750px) {
-            header {
-                padding: 0 30px;
-            }
-            
-            .nav-list {
-                display: none !important;
-            }
-
-            
-            .logo {
-                width: 250px;
-            }
-            
-            .hamburger-5 {
-                display: flex;
-            }
-        }
-        
         @media (max-width: 768px) {
             header {
                 padding: 0 20px;
@@ -306,7 +272,7 @@
         .content {
             animation: fadeIn 0.8s ease-out;
         }
- .box {
+        .box {
             margin-top: 70px;
             background: linear-gradient(135deg, #ffffff, #f8f9fa);
             border: 3px solid #0b9b3b;
@@ -318,18 +284,137 @@
             padding: 30px;
         }
         
-        .box span {
+        /* عنوان وسط باکس */
+        .box-header {
             position: absolute;
             top: 25px;
-            right: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 0;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid #0b9b3b;
+            min-width: 300px;
+            justify-content: center;
+        }
+        
+        .report-title {
             font-size: 28px;
             color: #0b9b3b;
             font-weight: 700;
-            z-index: 2;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 10px 25px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 8px 20px;
+            cursor: default;
+            transition: none !important;
+        }
+        
+        .report-title:hover {
+            background: none !important;
+            transform: none !important;
+            color: #0b9b3b !important;
+        }
+        
+        .report-name {
+            font-size: 28px;
+            color: #d4af37;
+            font-weight: 800;
+            padding: 8px 20px;
+            border-right: 2px solid #0b9b3b;
+            cursor: default;
+            transition: none !important;
+        }
+        
+        .report-name:hover {
+            background: none !important;
+            transform: none !important;
+        }
+        
+        /* لینک سایر مراسمات */
+        .other-ceremonies-link {
+            position: absolute;
+            top: 25px;
+            left: 30px;
+            background: rgba(11, 155, 59, 0.1);
+            color: #0b9b3b;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            border: 2px solid rgba(11, 155, 59, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .other-ceremonies-link:hover {
+            background: #0b9b3b;
+            color: white;
+            border-color: #0b9b3b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(11, 155, 59, 0.3);
+        }
+        
+        .other-ceremonies-link .arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .other-ceremonies-link:hover .arrow {
+            transform: translateY(2px);
+        }
+        
+        /* منوی سایر مراسمات */
+        .ceremonies-menu {
+            position: absolute;
+            top: 70px;
+            left: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 2px solid #0b9b3b;
+            padding: 15px 0;
+            min-width: 200px;
+            z-index: 25;
+            display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .ceremonies-menu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .ceremony-item {
+            padding: 12px 25px;
+            color: #5D4037;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-right: 3px solid transparent;
+        }
+        
+        .ceremony-item:hover {
+            background: #f0f9f0;
+            color: #0b9b3b;
+            padding-right: 30px;
+            border-right-color: #0b9b3b;
+        }
+        
+        .ceremony-item.active {
+            background: #e8f5e9;
+            color: #0b9b3b;
+            font-weight: 700;
+            border-right-color: #0b9b3b;
         }
         
         /* Container for image slider */
@@ -441,14 +526,9 @@
         .nav-arrow:hover {
             background: #0b9b3b;
             color: white;
-            transform: scale(1.1);
             box-shadow: 0 12px 30px rgba(11, 155, 59, 0.5);
         }
-        
-        .nav-arrow:active {
-            transform: scale(0.95);
-        }
-        
+    
         /* Dots indicator */
         .slider-dots {
             position: absolute;
@@ -511,49 +591,159 @@
             opacity: 0.9;
         }
         
-        /* Auto-play indicator */
-        .auto-play {
-            position: absolute;
-            bottom: 25px;
-            left: 30px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #0b9b3b;
-            font-size: 14px;
-            cursor: pointer;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 8px 15px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
+        /* MODAL تمام صفحه */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
         
-        .auto-play:hover {
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            width: 90%;
+            height: 90%;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-header {
             background: #0b9b3b;
             color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #48b80c;
         }
         
-        .play-icon {
-            width: 24px;
-            height: 24px;
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .modal-date {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .modal-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid currentColor;
-            border-radius: 50%;
+            transition: all 0.3s ease;
         }
         
-        /* Animation for slide change */
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(100px) scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background: #f8f9fa;
+            overflow: hidden;
+        }
+        
+        .modal-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-image.zoomed {
+            cursor: zoom-out;
+            transform: scale(1.5);
+        }
+        
+        .modal-image:not(.zoomed) {
+            cursor: zoom-in;
+        }
+        
+        .modal-footer {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-top: 2px solid #e9ecef;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 10;
+        }
+        
+        .modal-nav-arrow {
+            width: 60px;
+            height: 60px;
+            background: rgba(11, 155, 59, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 3px solid white;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-nav-arrow:hover {
+            background: #48b80c;
+            transform: scale(1.1);
+        }
+        
+        .modal-nav-arrow.next {
+            transform: rotate(180deg);
+        }
+        
+        .modal-nav-arrow:hover.next {
+            transform: rotate(180deg) scale(1.1);
         }
         
         /* Responsive for slider */
@@ -584,6 +774,15 @@
                 height: 50px;
                 font-size: 20px;
             }
+            
+            .box-header {
+                min-width: 250px;
+            }
+            
+            .report-title, .report-name {
+                font-size: 24px;
+                padding: 6px 15px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -609,9 +808,26 @@
                 transform: translateX(100px) scale(0.8);
             }
             
-            .box span {
-                font-size: 22px;
-                padding: 8px 20px;
+            .box-header {
+                min-width: 200px;
+                top: 20px;
+            }
+            
+            .report-title, .report-name {
+                font-size: 20px;
+                padding: 5px 12px;
+            }
+            
+            .other-ceremonies-link {
+                top: 20px;
+                left: 20px;
+                font-size: 14px;
+                padding: 6px 15px;
+            }
+            
+            .ceremonies-menu {
+                top: 60px;
+                left: 20px;
             }
             
             .nav-arrow {
@@ -626,106 +842,144 @@
             }
         }
         
-        .box-title {
-    position: absolute;
-    top: 25px;
-    right: 30px;
-    font-size: 28px;
-    color: #0b9b3b;
-    font-weight: 700;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 15px 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-    border: 2px solid #0b9b3b;
-    text-align: center;
-    line-height: 1.6;
-}
+        @media (max-width: 576px) {
+            .box {
+                height: 350px;
+            }
+            
+            .slider-container {
+                height: 200px;
+            }
+            
+            .slide {
+                width: 180px;
+                height: 120px;
+            }
+            
+            .slide.left {
+                transform: translateX(-80px) scale(0.8);
+            }
+            
+            .slide.right {
+                transform: translateX(80px) scale(0.8);
+            }
+            
+            .box-header {
+                min-width: 180px;
+                top: 15px;
+                flex-direction: column;
+                padding: 8px 0;
+            }
+            
+            .report-title, .report-name {
+                font-size: 18px;
+                padding: 4px 10px;
+            }
+            
+            .report-name {
+                border-right: none;
+                border-top: 2px solid #0b9b3b;
+                margin-top: 5px;
+                padding-top: 8px;
+            }
+            
+            .other-ceremonies-link {
+                display: none;
+            }
+            
+            .ceremonies-menu {
+                display: none !important;
+            }
+            
+            /* Responsive modal */
+            .modal-content {
+                width: 95%;
+                height: 95%;
+                border-radius: 15px;
+            }
+            
+            .modal-header {
+                padding: 15px 20px;
+            }
+            
+            .modal-title {
+                font-size: 18px;
+            }
+            
+            .modal-date {
+                font-size: 14px;
+            }
+            
+            .modal-close {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .modal-body {
+                padding: 15px;
+            }
+            
+            .modal-nav {
+                padding: 0 20px;
+            }
+            
+            .modal-nav-arrow {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+        }
 
-.box-title .highlight {
-    display: inline-block;
-    background: linear-gradient(120deg, #0b9b3b 0%, #48b80c 100%);
-    color: white;
-    padding: 4px 20px;
-    border-radius: 10px;
-    margin-right: 8px;
-    font-weight: 800;
-    box-shadow: 0 4px 12px rgba(11, 155, 59, 0.3);
-    transform: translateY(-2px);
-    border: 2px solid white;
-    position: relative;
-    overflow: hidden;
-}
-
-.box-title .highlight::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    animation: shine 3s infinite;
-}
-
-@keyframes shine {
-    0% { left: -100%; }
-    20% { left: 100%; }
-    100% { left: 100%; }
-}
-
-/* استایل ریسپانسیو */
-@media (max-width: 768px) {
-    .box-title {
-        font-size: 22px;
-        padding: 12px 20px;
-        top: 20px;
-        right: 20px;
-        border-radius: 12px;
-    }
-    
-    .box-title .highlight {
-        padding: 3px 15px;
-        font-size: 20px;
-        margin-right: 5px;
-    }
-}
-
-@media (max-width: 576px) {
-    .box-title {
-        font-size: 18px;
-        padding: 10px 15px;
-        top: 15px;
-        right: 15px;
-    }
-    
-    .box-title .highlight {
-        padding: 2px 12px;
-        font-size: 16px;
-        border-radius: 8px;
-    }
-}
-
-@media (max-width: 400px) {
-    .box-title {
-        font-size: 16px;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        align-items: center;
-    }
-    
-    .box-title .highlight {
-        margin-right: 0;
-        width: 100%;
-        text-align: center;
-    }
-}
-    </style>
-</head>
-<body>
+        .prev-arrow{
+            transform: rotate(180deg);
+        }
         
+        /* مخفی کردن منوی مراسمات وقتی کلیک خارج شود */
+        .ceremonies-menu-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 24;
+            display: none;
+        }
+        
+        .ceremonies-menu-backdrop.active {
+            display: block;
+        }
+        
+        /* دکمه زوم در modal */
+        .zoom-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .zoom-btn {
+            width: 45px;
+            height: 45px;
+            background: rgba(11, 155, 59, 0.9);
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .zoom-btn:hover {
+            background: #48b80c;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
@@ -761,16 +1015,40 @@
     <div class="content">
         <h1>مجموعه تربیتی حیاتنا حسین <span>علیه السلام</span></h1>
         <img src="images/Hayatona-logo.png" alt="Logo" class="logo">
-<div class="box" id="Reports">
-    <span class="box-title">گزارش <span class="highlight">اعتکاف ۱۴۰۴</span></span>
-    <div class="slider-container">
+    <div class="box" id="Reports">
+        <!-- لینک سایر مراسمات -->
+        <a class="other-ceremonies-link" id="ceremoniesLink">
+            سایر مراسمات
+            <span class="arrow">▼</span>
+        </a>
+        
+        <!-- منوی سایر مراسمات -->
+        <div class="ceremonies-menu" id="ceremoniesMenu">
+            <div class="ceremony-item active" data-ceremony="اعتکاف">اعتکاف ۱۴۰۴</div>
+            <div class="ceremony-item" data-ceremony="محرم">محرم ۱۴۰۴</div>
+            <div class="ceremony-item" data-ceremony="کارگاه">کارگاه آموزشی</div>
+            <div class="ceremony-item" data-ceremony="جلسه">جلسه پرسش و پاسخ</div>
+            <div class="ceremony-item" data-ceremony="سخنرانی">سخنرانی هفتگی</div>
+            <div class="ceremony-item" data-ceremony="نشست">نشست دانش‌آموزی</div>
+        </div>
+        
+        <!-- پس‌زمینه برای بستن منو -->
+        <div class="ceremonies-menu-backdrop" id="ceremoniesBackdrop"></div>
+        
+        <!-- عنوان وسط -->
+        <div class="box-header">
+            <span class="report-title">گزارش</span>
+            <span class="report-name" id="reportName">اعتکاف ۱۴۰۴</span>
+        </div>
+        
+        <div class="slider-container">
                 <div class="slider-track" id="sliderTrack">
                     <!-- Slides will be dynamically added here -->
                 </div>
                 
                 <div class="slider-nav">
-                    <div class="nav-arrow prev-arrow">→</div>
-                    <div class="nav-arrow next-arrow">←</div>
+                    <div class="nav-arrow next-arrow">➜</div>
+                    <div class="nav-arrow prev-arrow">➜</div>
                 </div>
                 
                 <div class="slider-dots" id="sliderDots">
@@ -781,55 +1059,220 @@
         </div>
     </div>
     
+    <!-- Modal تمام صفحه -->
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <div class="modal-title" id="modalTitle">عنوان تصویر</div>
+                    <div class="modal-date" id="modalDate">تاریخ</div>
+                </div>
+                <button class="modal-close" id="modalClose">✕</button>
+            </div>
+            
+            <div class="modal-nav">
+                <div class="modal-nav-arrow prev" id="modalPrev">➜</div>
+                <div class="modal-nav-arrow next" id="modalNext">➜</div>
+            </div>
+            
+            <div class="modal-body">
+                <img class="modal-image" id="modalImage" src="" alt="تصویر بزرگ">
+                
+                <div class="zoom-controls">
+                    <button class="zoom-btn" id="zoomIn">+</button>
+                    <button class="zoom-btn" id="zoomOut">−</button>
+                    <button class="zoom-btn" id="resetZoom">⟳</button>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                برای بستن این پنجره کلید ESC را فشار دهید یا روی دکمه ✕ کلیک کنید
+            </div>
+        </div>
+    </div>
+    
     <script>
-        // Image data
-        const slidesData = [
-            {
-                id: 1,
-                image: "image.png",
-                title: "مراسم عزاداری محرم",
-                date: "۱۴۰۲/۰۷/۰۵"
-            },
-            {
-                id: 2,
-                image: "image-2.jpg",
-                title: "کارگاه آموزشی دانش‌آموزی",
-                date: "۱۴۰۲/۰۷/۱۲"
-            },
-            {
-                id: 3,
-                image: "image-3.jpg",
-                title: "جلسه پرسش و پاسخ",
-                date: "۱۴۰۲/۰۷/۱۹"
-            },
-            {
-                id: 4,
-                image: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                title: "سخنرانی هفتگی",
-                date: "۱۴۰۲/۰۷/۲۶"
-            },
-            {
-                id: 5,
-                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                title: "نشست دانش‌آموزی",
-                date: "۱۴۰۲/۰۸/۰۲"
-            }
-        ];
+        // داده‌های مختلف برای هر مراسم
+        const ceremoniesData = {
+            "اعتکاف": [
+                {
+                    id: 1,
+                    image: "image.png",
+                    title: "سخنرانی اعتکاف",
+                    date: "۱۴۰۴/۰۰/۰۰",
+                },
+                {
+                    id: 2,
+                    image: "image-2.jpg",
+                    title: " معنوی اعتکاف",
+                    date: "۱۴۰۴/۰۰/۰۰",
+                },
+                {
+                    id: 3,
+                    image: "image-3.jpg",
+                    title: "حلقه های معرفتی",
+                    date: "۱۴۰۴/۰۰/۰۰",
+                }
+            ],
+            "محرم": [
+                {
+                    id: 1,
+                    image: "https://images.unsplash.com/photo-1590334284666-e6d4ef96e1e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "مراسم عزاداری محرم",
+                    date: "۱۴۰۴/۰۶/۰۵",
+                    description: "مراسم عزاداری شب اول محرم با شکوه خاصی برگزار شد."
+                },
+                {
+                    id: 2,
+                    image: "https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "دست‌ه‌های عزاداری",
+                    date: "۱۴۰۴/۰۶/۰۶",
+                    description: "دست‌ه‌های عزاداری با حضور پرشور مردم در خیابان‌های شهر حرکت کردند."
+                },
+                {
+                    id: 3,
+                    image: "https://images.unsplash.com/photo-1526304760382-3591d3840148?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "شب شهادت امام حسین (ع)",
+                    date: "۱۴۰۴/۰۶/۰۷",
+                    description: "مراسم باشکوه شب شهادت حضرت اباعبدالله الحسین (ع) برگزار گردید."
+                }
+            ],
+            "کارگاه": [
+                {
+                    id: 1,
+                    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "کارگاه آموزشی دانش‌آموزی",
+                    date: "۱۴۰۴/۰۴/۱۲",
+                    description: "کارگاه آموزشی ویژه دانش‌آموزان با موضوع مهارت‌های زندگی برگزار شد."
+                },
+                {
+                    id: 2,
+                    image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "کارگاه مهارت‌های زندگی",
+                    date: "۱۴۰۴/۰۴/۱۳",
+                    description: "کارگاه عملی مهارت‌های زندگی با حضور اساتید مجرب برگزار گردید."
+                },
+                {
+                    id: 3,
+                    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "کارگاه خانواده موفق",
+                    date: "۱۴۰۴/۰۴/۱۴",
+                    description: "کارگاه خانواده موفق با محوریت روابط سالم در خانواده برگزار شد."
+                }
+            ],
+            "جلسه": [
+                {
+                    id: 1,
+                    image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "جلسه پرسش و پاسخ",
+                    date: "۱۴۰۴/۰۳/۱۹",
+                    description: "جلسه پرسش و پاسخ با حضور کارشناسان دینی برگزار گردید."
+                },
+                {
+                    id: 2,
+                    image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "جلسه جوانان",
+                    date: "۱۴۰۴/۰۳/۲۰",
+                    description: "جلسه ویژه جوانان با موضوع چالش‌های نسل جدید برگزار شد."
+                },
+                {
+                    id: 3,
+                    image: "https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "جلسه خانواده",
+                    date: "۱۴۰۴/۰۳/۲۱",
+                    description: "جلسه خانواده با موضوع تربیت فرزند در اسلام برگزار گردید."
+                }
+            ],
+            "سخنرانی": [
+                {
+                    id: 1,
+                    image: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "سخنرانی هفتگی",
+                    date: "۱۴۰۴/۰۲/۲۶",
+                    description: "سخنرانی هفتگی با موضوع اخلاق اسلامی برگزار شد."
+                },
+                {
+                    id: 2,
+                    image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "سخنرانی ماهانه",
+                    date: "۱۴۰۴/۰۲/۲۷",
+                    description: "سخنرانی ماهانه با حضور استاد برجسته حوزه علمیه برگزار گردید."
+                },
+                {
+                    id: 3,
+                    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "سخنرانی ویژه",
+                    date: "۱۴۰۴/۰۲/۲۸",
+                    description: "سخنرانی ویژه با موضوع ولایت و امامت برگزار شد."
+                }
+            ],
+            "نشست": [
+                {
+                    id: 1,
+                    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "نشست دانش‌آموزی",
+                    date: "۱۴۰۴/۰۱/۰۲",
+                    description: "نشست دانش‌آموزی با موضوع نقش جوانان در انقلاب اسلامی برگزار شد."
+                },
+                {
+                    id: 2,
+                    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "نشست دانشجویی",
+                    date: "۱۴۰۴/۰۱/۰۳",
+                    description: "نشست دانشجویی با محوریت مسائل روز دانشگاه‌ها برگزار گردید."
+                },
+                {
+                    id: 3,
+                    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "نشست طلاب",
+                    date: "۱۴۰۴/۰۱/۰۴",
+                    description: "نشست طلاب حوزه علمیه با موضوعات درسی و پژوهشی برگزار شد."
+                }
+            ]
+        };
 
         // Slider variables
         let currentSlide = 0;
+        let currentCeremony = "اعتکاف";
+        let currentSlidesData = [];
         let slides = [];
         let dots = [];
         let isAutoPlaying = true;
         let autoPlayInterval;
+        let modalOpen = false;
+        let zoomLevel = 1;
 
         // Initialize slider
         function initSlider() {
+            loadCeremonyData(currentCeremony);
+        }
+
+        // Load data for a ceremony
+        function loadCeremonyData(ceremonyKey) {
+            currentSlidesData = ceremoniesData[ceremonyKey];
             const sliderTrack = document.getElementById('sliderTrack');
             const sliderDots = document.getElementById('sliderDots');
             
-            // Create slides
-            slidesData.forEach((slideData, index) => {
+            // Clear existing slides and dots
+            sliderTrack.innerHTML = '';
+            sliderDots.innerHTML = '';
+            slides = [];
+            dots = [];
+            currentSlide = 0;
+            
+            // Update report name
+            document.getElementById('reportName').textContent = ceremonyKey + " ۱۴۰۴";
+            
+            // Update active item in menu
+            document.querySelectorAll('.ceremony-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.ceremony === ceremonyKey) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Create new slides
+            currentSlidesData.forEach((slideData, index) => {
                 // Create slide element
                 const slide = document.createElement('div');
                 slide.className = 'slide';
@@ -858,9 +1301,9 @@
                 sliderDots.appendChild(dot);
                 dots.push(dot);
                 
-                // Add click event to slide
+                // Add click event to slide for opening modal
                 slide.addEventListener('click', () => {
-                    goToSlide(index);
+                    openModal(index);
                 });
                 
                 // Add click event to dot
@@ -869,7 +1312,7 @@
                 });
             });
             
-            // Update slider
+            // Update slider display
             updateSlider();
             
             // Start auto-play
@@ -926,32 +1369,119 @@
 
         // Auto-play functions
         function startAutoPlay() {
-            if (isAutoPlaying) {
+            if (isAutoPlaying && !modalOpen) {
                 autoPlayInterval = setInterval(nextSlide, 4000);
-                document.getElementById('playIcon').textContent = '⏸';
-                document.getElementById('autoPlayText').textContent = 'توقف پخش';
             }
         }
 
         function stopAutoPlay() {
             clearInterval(autoPlayInterval);
-            document.getElementById('playIcon').textContent = '▶';
-            document.getElementById('autoPlayText').textContent = 'پخش خودکار';
         }
 
         function resetAutoPlay() {
-            if (isAutoPlaying) {
+            if (isAutoPlaying && !modalOpen) {
                 clearInterval(autoPlayInterval);
                 startAutoPlay();
             }
         }
 
-        function toggleAutoPlay() {
-            isAutoPlaying = !isAutoPlaying;
+        // Open modal with image
+        function openModal(slideIndex) {
+            const slideData = currentSlidesData[slideIndex];
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDate = document.getElementById('modalDate');
+            
+            // Set modal content
+            modalImage.src = slideData.image;
+            modalImage.alt = slideData.title;
+            modalTitle.textContent = slideData.title;
+            modalDate.textContent = slideData.date;
+            
+            // Reset zoom
+            resetZoom();
+            
+            // Update current slide for modal navigation
+            currentSlide = slideIndex;
+            
+            // Show modal
+            modal.classList.add('active');
+            modalOpen = true;
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            
+            // Stop auto-play when modal is open
+            stopAutoPlay();
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            modalOpen = false;
+            document.body.style.overflow = ''; // Restore scrolling
+            
+            // Resume auto-play
             if (isAutoPlaying) {
                 startAutoPlay();
+            }
+        }
+
+        // Zoom functions
+        function zoomIn() {
+            const modalImage = document.getElementById('modalImage');
+            zoomLevel += 0.25;
+            if (zoomLevel > 3) zoomLevel = 3;
+            modalImage.style.transform = `scale(${zoomLevel})`;
+            modalImage.classList.add('zoomed');
+        }
+
+        function zoomOut() {
+            const modalImage = document.getElementById('modalImage');
+            zoomLevel -= 0.25;
+            if (zoomLevel < 0.5) zoomLevel = 0.5;
+            modalImage.style.transform = `scale(${zoomLevel})`;
+            if (zoomLevel === 1) {
+                modalImage.classList.remove('zoomed');
             } else {
-                stopAutoPlay();
+                modalImage.classList.add('zoomed');
+            }
+        }
+
+        function resetZoom() {
+            const modalImage = document.getElementById('modalImage');
+            zoomLevel = 1;
+            modalImage.style.transform = 'scale(1)';
+            modalImage.classList.remove('zoomed');
+        }
+
+        // Toggle ceremonies menu
+        function toggleCeremoniesMenu() {
+            const menu = document.getElementById('ceremoniesMenu');
+            const backdrop = document.getElementById('ceremoniesBackdrop');
+            const link = document.getElementById('ceremoniesLink');
+            
+            menu.classList.toggle('active');
+            backdrop.classList.toggle('active');
+            
+            // Rotate arrow
+            const arrow = link.querySelector('.arrow');
+            arrow.style.transform = menu.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        // Close ceremonies menu when clicking outside
+        function closeCeremoniesMenu() {
+            const menu = document.getElementById('ceremoniesMenu');
+            const backdrop = document.getElementById('ceremoniesBackdrop');
+            const link = document.getElementById('ceremoniesLink');
+            
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+                backdrop.classList.remove('active');
+                
+                // Reset arrow rotation
+                const arrow = link.querySelector('.arrow');
+                arrow.style.transform = 'rotate(0deg)';
             }
         }
 
@@ -970,32 +1500,70 @@
                 resetAutoPlay();
             });
             
-            // Auto-play toggle
-            document.getElementById('autoPlayToggle').addEventListener('click', toggleAutoPlay);
+            // Modal navigation
+            document.getElementById('modalPrev').addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + currentSlidesData.length) % currentSlidesData.length;
+                openModal(currentSlide);
+            });
+            
+            document.getElementById('modalNext').addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % currentSlidesData.length;
+                openModal(currentSlide);
+            });
+            
+            // Modal close
+            document.getElementById('modalClose').addEventListener('click', closeModal);
+            
+            // Zoom controls
+            document.getElementById('zoomIn').addEventListener('click', zoomIn);
+            document.getElementById('zoomOut').addEventListener('click', zoomOut);
+            document.getElementById('resetZoom').addEventListener('click', resetZoom);
             
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowRight') {
-                    prevSlide();
-                    resetAutoPlay();
+                    if (modalOpen) {
+                        // Next in modal
+                        currentSlide = (currentSlide + 1) % currentSlidesData.length;
+                        openModal(currentSlide);
+                    } else {
+                        prevSlide();
+                        resetAutoPlay();
+                    }
                 } else if (e.key === 'ArrowLeft') {
-                    nextSlide();
-                    resetAutoPlay();
-                } else if (e.key === ' ') {
-                    toggleAutoPlay();
+                    if (modalOpen) {
+                        // Prev in modal
+                        currentSlide = (currentSlide - 1 + currentSlidesData.length) % currentSlidesData.length;
+                        openModal(currentSlide);
+                    } else {
+                        nextSlide();
+                        resetAutoPlay();
+                    }
+                } else if (e.key === 'Escape') {
+                    if (modalOpen) {
+                        closeModal();
+                    } else {
+                        closeCeremoniesMenu();
+                    }
+                } else if (e.key === '+' || e.key === '=') {
+                    if (modalOpen) zoomIn();
+                } else if (e.key === '-' || e.key === '_') {
+                    if (modalOpen) zoomOut();
+                } else if (e.key === '0') {
+                    if (modalOpen) resetZoom();
                 }
             });
             
             // Pause on hover
             const sliderContainer = document.querySelector('.slider-container');
             sliderContainer.addEventListener('mouseenter', () => {
-                if (isAutoPlaying) {
+                if (isAutoPlaying && !modalOpen) {
                     clearInterval(autoPlayInterval);
                 }
             });
             
             sliderContainer.addEventListener('mouseleave', () => {
-                if (isAutoPlaying) {
+                if (isAutoPlaying && !modalOpen) {
                     startAutoPlay();
                 }
             });
@@ -1019,15 +1587,47 @@
                 
                 if (Math.abs(diff) > swipeThreshold) {
                     if (diff > 0) {
-                        // Swipe right to left = next
                         nextSlide();
                     } else {
-                        // Swipe left to right = previous
                         prevSlide();
                     }
                     resetAutoPlay();
                 }
             }
+            
+            // Ceremonies menu events
+            document.getElementById('ceremoniesLink').addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleCeremoniesMenu();
+            });
+            
+            // Close menu when clicking backdrop
+            document.getElementById('ceremoniesBackdrop').addEventListener('click', closeCeremoniesMenu);
+            
+            // Ceremony item selection
+            document.querySelectorAll('.ceremony-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const ceremonyKey = item.dataset.ceremony;
+                    currentCeremony = ceremonyKey;
+                    loadCeremonyData(ceremonyKey);
+                    closeCeremoniesMenu();
+                });
+            });
+            
+            // Close modal when clicking outside image
+            document.getElementById('imageModal').addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal-overlay')) {
+                    closeModal();
+                }
+            });
+            
+            // Close menu when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 576) {
+                    closeCeremoniesMenu();
+                }
+            });
         });
 
         // مدیریت منوی همبرگری
